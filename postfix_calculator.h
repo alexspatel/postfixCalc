@@ -1,6 +1,8 @@
 /*
 	postfix_calculator.h
 
+	Alex Patel
+
 	For CSCI 262, Spring 2014, Assignment 2.
 	
 	Header file for the postfix calculator.  You will need to
@@ -16,6 +18,7 @@
 #define POSTFIX_CALCULATOR_H
 
 #include <stack>
+#include <cstdlib>
 #include <string>
 
 class postfix_calculator {
@@ -43,6 +46,18 @@ public:
 	// When either flag method returns true, the behavior of evaluate 
 	// is unspecified until the clear() function is called.
 	bool evaluate(std::string);
+
+	// operators
+	int add(int p1, int p2) { int sum = p1 + p2; return sum; }
+
+	int sub(int p1, int p2) { int sum = p1 - p2; return sum; }
+
+	int divide(int p1, int p2) { int prod = p1 / p2; return prod; }
+
+	int mult(int p1, int p2) { int prod = p1 * p2; return prod; }
+
+	// string to number
+	double str_to_num(const std::string p_str);
 
 	// Clear flags and invalid operator string, if set, and remove
 	// all items from the current stack.
@@ -72,6 +87,11 @@ public:
 
 private:
 	// TODO: declare member variables here for your stack, flags, etc.
+	/*string p1_str;
+	string p2_str;
+	int p1;
+	int p2;
+	string op;*/
 };
 
 #endif

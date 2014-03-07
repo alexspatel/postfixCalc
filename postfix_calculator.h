@@ -48,16 +48,14 @@ public:
 	bool evaluate(std::string);
 
 	// operators
-	int add(int p1, int p2) { int sum = p1 + p2; return sum; }
+	void add(double p1, double p2) { result = p1 + p2; }
 
-	int sub(int p1, int p2) { int sum = p1 - p2; return sum; }
+	void sub(double p1, double p2) { result = p1 - p2; }
 
-	int divide(int p1, int p2) { int prod = p1 / p2; return prod; }
+	void divide(double p1, double p2) { result = p1 / p2; }
 
-	int mult(int p1, int p2) { int prod = p1 * p2; return prod; }
+	void mult(double p1, double p2) { result = p1 * p2;  }
 
-	// string to number
-	double str_to_num(const std::string p_str);
 
 	// Clear flags and invalid operator string, if set, and remove
 	// all items from the current stack.
@@ -72,8 +70,8 @@ public:
 
 	// Errors
 	bool stack_underflow_flag();
-	bool invalid_operator_flag();
-	std::string invalid_operator_string();
+	bool invalid_operator_flag(const std::string& expr);
+	std::string invalid_operator_string(const std::string& expr);
 
 	// Constructor
 	postfix_calculator();
@@ -87,11 +85,9 @@ public:
 
 private:
 	// TODO: declare member variables here for your stack, flags, etc.
-	/*string p1_str;
-	string p2_str;
-	int p1;
-	int p2;
-	string op;*/
+	double p1;
+	double p2;
+	double result;
 };
 
 #endif

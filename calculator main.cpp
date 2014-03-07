@@ -20,17 +20,6 @@ using namespace std;
 
 
 int main() {
-	// Tests
-	//t.push(10);
-	//t.push(20);
-	//t.push(30);
-	//while( t.top() != NULL )
-	//{
-	//	//int top = t.top();
-	//	cout << t.top() << endl;
-	//	t.pop();
-	//}
-
 
 	
 	postfix_calculator calc;
@@ -45,7 +34,7 @@ int main() {
 		if (input == "quit") {
 			return 0;
 		}
-		/*else if (input == "clear") {
+		else if (input == "clear") {
 			calc.clear();
 		}
 		else if (input == "debug") {
@@ -58,7 +47,7 @@ int main() {
 			if (calc.invalid_operator_flag(input)) {
 				cout << "Invalid operator flag set." << endl;
 				cout << "Invalid operator: ";
-				cout << calc.invalid_operator_string() << endl;
+				cout << calc.invalid_operator_string(input) << endl;
 				has_flags = true;
 			} 
 			if (!has_flags) {
@@ -70,7 +59,7 @@ int main() {
 				cout << "Top of stack contains: " << endl;
 				cout << calc.top() << endl;
 			}
-		}*/
+		}
 		else {
 			bool success = calc.evaluate(input);
 			if (success) {

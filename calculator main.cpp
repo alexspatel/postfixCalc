@@ -17,7 +17,7 @@
 #include <stack>
 using namespace std;
 
-stack <int> t;
+
 
 int main() {
 	// Tests
@@ -33,7 +33,7 @@ int main() {
 
 
 	
-	/*postfix_calculator calc;
+	postfix_calculator calc;
 	string input;
 
 	cout << "Welcome to the postfix calculator!" << endl;
@@ -45,7 +45,7 @@ int main() {
 		if (input == "quit") {
 			return 0;
 		}
-		else if (input == "clear") {
+		/*else if (input == "clear") {
 			calc.clear();
 		}
 		else if (input == "debug") {
@@ -55,7 +55,7 @@ int main() {
 				cout << "Stack underflow flag set." << endl;
 				has_flags = true;
 			}
-			if (calc.invalid_operator_flag()) {
+			if (calc.invalid_operator_flag(input)) {
 				cout << "Invalid operator flag set." << endl;
 				cout << "Invalid operator: ";
 				cout << calc.invalid_operator_string() << endl;
@@ -70,16 +70,16 @@ int main() {
 				cout << "Top of stack contains: " << endl;
 				cout << calc.top() << endl;
 			}
-		}
+		}*/
 		else {
 			bool success = calc.evaluate(input);
 			if (success) {
 				cout << "answer: " << calc.top() << endl;
 			} else if (calc.stack_underflow_flag()) {
 				cout << "ERROR: Stack underflow." << endl;
-			} else if (calc.invalid_operator_flag()) {
+			} else if (calc.invalid_operator_flag(input)) {
 				cout << "ERROR: Unrecognized operator '";
-				cout << calc.invalid_operator_string();
+				cout << calc.invalid_operator_string(input);
 				cout << "'." << endl;
 			} else {
 				cout << "ERROR: Unknown error." << endl;
@@ -87,20 +87,8 @@ int main() {
 		}
 
 		cout << "----------------------------------" << endl;
-	}*/
+	}
 
-
-	// Tests
-	//t.push(10);
-
-	//t.push(20);
-
-	////t.pop();
-
-	//cout << t.top() << endl;
-
-	//postfix_calculator test;
-	//cout << test.evaluate("1 3 + ") << endl;
 
 	system("pause");
 

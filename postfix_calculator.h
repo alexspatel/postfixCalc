@@ -20,6 +20,7 @@
 #include <stack>
 #include <cstdlib>
 #include <string>
+#include <cmath>
 
 class postfix_calculator {
 public:
@@ -56,6 +57,19 @@ public:
 
 	void mult(double p1, double p2) { result = p1 * p2;  }
 
+	void exponent(double p1, double p2) { result = pow(p1,p1); }
+
+	void squareRoot(double p1) { result = sqrt(p1); }
+
+	void log(double p1) { result = log10(p1); }
+
+	//void naturalLog(double p1) { result = log (p1); }
+
+	void sine(double p1) { result = sin(p1); }
+
+	void cosine(double p1) { result = cos(p1); }
+
+	void tangent(double p1) { result = tan(p1); }
 
 	// Clear flags and invalid operator string, if set, and remove
 	// all items from the current stack.

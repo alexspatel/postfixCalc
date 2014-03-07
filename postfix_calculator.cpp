@@ -45,54 +45,69 @@ bool postfix_calculator::evaluate(string expr) {
 	// You can determine which of the substrings represent
 	// numbers using the to_double function provided below.
 
-
+	string op = " ";
 	double num, num2; // variable to store contents of the string
-	if( istringstream(expr) >> num >> num2 )
+	if( istringstream(expr) >> num >> num2 >> op )
 	{
 		calcStack.push(num); // push the number onto the stack
 		calcStack.push(num2); // push num2 onto the stack
 	}
+
+
 	
+
+	cout << "The first number is: "<< num << endl << "The second number is " << num2 << endl;
+	cout << "The operator is: " << op << endl;
+
+	
+	p2 = calcStack.top(); 
+	calcStack.pop();
+	
+	p1 = calcStack.top();
+	calcStack.pop();
 
 	// Check to see if the input is a valid operator
-
-	//p1 = calcStack.top(); // p1 is the number on the top of the stack
-	//calcStack.pop(); // pop off p1
-
-	//p2 = calcStack.top(); // p2 is the next number on the stack
-	//calcStack.pop(); // pop off p2
-
-	cout << num << endl << num2 << endl;
-	
+	invalid_operator_flag(op);
 
 
 	// (+) operator
-	if(expr == "+")
+	if(op == "+")
 	{
 		add(p1,p2);
 	}
 
 	// (-) operator
-	else if(expr == "-")
+	else if(op == "-")
 	{
 		sub(p1,p2);
 	}
 
 	// (*) operator
-	else if(expr == "*")
+	else if(op == "*")
 	{
 		mult(p1,p2);
 	}
 
 	// (/) operator
-	else if(expr == "/" )
+	else if(op == "/" )
 	{
 		divide(p1,p2);
 	}
 
+	// (^) operator
+	else if(op == "^" )
+	{
+		exponent(p1,p2);
+	}
+
+	else if(op == "sqrt" )
+	{
+		squareRoot(p1);
+	}
+
 
 	//cout << result << endl;
-	//calcStack.push(result); // push the result onto the stack
+	calcStack.push(result); // push the result onto the stack
 
 	return true;
 }
@@ -141,9 +156,9 @@ double postfix_calculator::top()
 // return the status of the operator error flag
 bool postfix_calculator::invalid_operator_flag(const std::string& expr)
 {
-	string operators[] = {"+", "-", "*", "/"};
+	string operators[] = {"+", "-", "*", "/", "^", "sqrt", "log", "ln", "sin", "cos", "tan"};
 	invalid_operator_string(expr);
-	for(int i = 0; i < 4; i++)
+	for(int i = 0; i < 11; i++)
 	{
 		if( expr == operators[i] )
 		{

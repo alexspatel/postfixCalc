@@ -10,6 +10,9 @@
 
 	http://cse.csusb.edu/dick/samples/stl.html
 	// used tpo reference the STL stack
+
+	http://www.youtube.com/watch?v=zla7ha0OORM
+	// used for RPN help
 */
 
 #include "postfix_calculator.h"
@@ -22,7 +25,10 @@
 
 using namespace std;
 
-stack <int> s;
+
+stack <double> calcStack;
+
+
 
 bool postfix_calculator::evaluate(string expr) {
 	// TODO: Implement as per postfix_calculator.h
@@ -39,69 +45,58 @@ bool postfix_calculator::evaluate(string expr) {
 	// You can determine which of the substrings represent
 	// numbers using the to_double function provided below.
 
-	std::string p1_str;
-	std::string p2_str;
-	std::string op;
-	int p1, p2;
 
-	istringstream string_in(expr);
-	
-	expr.substr();
-	/**********************************************************************************/ // PRODUCES STRING ERROR
-	// store the operands of expr
-	for(int i = 0; i < sizeof(expr); i++)
+	double num, num2; // variable to store contents of the string
+	if( istringstream(expr) >> num >> num2 )
 	{
-		expr >> p1_str >> p2_str >> op;
+		calcStack.push(num); // push the number onto the stack
+		calcStack.push(num2); // push num2 onto the stack
 	}
-	/**********************************************************************************/
-	// convert from string to double
-	str_to_num(p1_str);
-	str_to_num(p2_str);
 	
+
+	// Check to see if the input is a valid operator
+
+	//p1 = calcStack.top(); // p1 is the number on the top of the stack
+	//calcStack.pop(); // pop off p1
+
+	//p2 = calcStack.top(); // p2 is the next number on the stack
+	//calcStack.pop(); // pop off p2
+
+	cout << num << endl << num2 << endl;
 	
+
+
 	// (+) operator
-	if(op == "+")
+	if(expr == "+")
 	{
 		add(p1,p2);
 	}
 
 	// (-) operator
-	else if(op == "-")
+	else if(expr == "-")
 	{
 		sub(p1,p2);
 	}
 
 	// (*) operator
-	else if(op == "*")
+	else if(expr == "*")
 	{
 		mult(p1,p2);
 	}
 
 	// (/) operator
-	else if(op == "/" )
+	else if(expr == "/" )
 	{
 		divide(p1,p2);
 	}
 
+
+	//cout << result << endl;
+	//calcStack.push(result); // push the result onto the stack
+
 	return true;
 }
 
-// Converts a string to a double
-double postfix_calculator::str_to_num(const std::string p_str)
-{
-	stringstream convert(p_str); // conversion initialized with contents of p_str
-	double p; // number containing the result
-
-	if( !(convert >> p) ) // give the value to p using chars in the string
-	{
-		p = 0; // if that fails, set p to 0
-	}
-	return p;
-
-	/*stringstream ss(p_str);
-	double p;
-	return ss >> p ? p : 0;*/
-}
 
 
 // TODO: Implement the remaining functions specified
@@ -123,12 +118,12 @@ double postfix_calculator::str_to_num(const std::string p_str)
 void postfix_calculator::clear()
 {
 	//empty the stack
-	if(s.empty() == false) // if the stack isn't empty
+	if(calcStack.empty() == false) // if the stack isn't empty
 	{
 		int i = 0;
-		while( i = ! s.size() ) // 
+		while( i = ! calcStack.size() ) // 
 		{
-			s.pop(); // pop the top off of the stack
+			calcStack.pop(); // pop the top off of the stack
 		}
 	}
 
@@ -139,20 +134,29 @@ void postfix_calculator::clear()
 // returns the top item on the stack(most recent evaluate() call)
 double postfix_calculator::top()
 {
-	return s.top(); 
+	return calcStack.top(); 
 }
 
 // Invalid Operator Flag function
 // return the status of the operator error flag
-bool postfix_calculator::invalid_operator_flag()
+bool postfix_calculator::invalid_operator_flag(const std::string& expr)
 {
-	return true;
+	string operators[] = {"+", "-", "*", "/"};
+	invalid_operator_string(expr);
+	for(int i = 0; i < 4; i++)
+	{
+		if( expr == operators[i] )
+		{
+			return true; // it is a valid operator
+		}
+		
+	}
+	return false; // not a valid operator
 }
 
-std::string postfix_calculator::invalid_operator_string()
+std::string postfix_calculator::invalid_operator_string(const std::string& expr)
 {
-	string boo = "Hi";
-	return boo;
+	return expr;
 }
 
 // Stack Underflow Flag function
